@@ -1,0 +1,56 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квик-Стей!</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Квик-Стей!</h1>
+    </header>
+
+    <div class="container">
+        <section class="description">
+            <h2>Описание квартиры</h2>
+            <p>Предлагаем в аренду уютную и светлую квартиру в центре Москвы. Квартира расположена на 5 этаже, с видом на парк. В наличии вся необходимая мебель и бытовая техника.</p>
+            <ul>
+                <li>Площадь: 65 м²</li>
+                <li>Спальни: 2</li>
+                <li>Ванные комнаты: 1</li>
+                <li>Кухня: полностью оборудована</li>
+            </ul>
+            <!-- Кнопка "Подобрать квартиру прямо сейчас!" -->
+            <a href="{% url 'products' %}" class="button">Подобрать квартиру прямо сейчас!</a>
+        </section>
+
+        <section class="gallery">
+            <h2>Галерея</h2>
+            <img src="https://via.placeholder.com/300" alt="Гостиная">
+            <img src="https://via.placeholder.com/300" alt="Спальня">
+            <img src="https://via.placeholder.com/300" alt="Кухня">
+        </section>
+
+        <section class="map">
+            <h2>Расположение</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2241.7446310710686!2d37.61729991568919!3d55.75582622650008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414cd3f6fdbb4ef7%3A0x9b9b2e17d3c1f7a7!2z0J3QvtCz0LDRhtC40L3QvtCy!5e0!3m2!1sru!2sru!4v1634567891234" allowfullscreen="" loading="lazy"></iframe>
+        </section>
+
+        <section class="contact" id="contact">
+            <h2>Контактная информация</h2>
+            <p>Телефон: +7 123 456-78-90</p>
+            <p>Email: info@rentapartment.ru</p>
+            <p>Адрес: г. Москва, ул. Примерная, д. 1</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Аренда квартиры. Все права защищены.</p>
+    </footer>
+</body>
+</html>
+

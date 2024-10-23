@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квик-Стей!</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+</head>
+<body>
+    <h1>Квик-Стей!</h1>
+    <p>Квик-стей - это удобная и безопасная платформа для поиска и аренды квартир. Мы предлагаем широкий выбор жилья: уютных студий до роскошных апартаментов в лучших районах.</p>
+    <a href="{% url 'products:index' %}" class="button">Подобрать квартиру!</a>
+</body>
+
+</html>
+

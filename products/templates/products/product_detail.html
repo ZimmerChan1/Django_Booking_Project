@@ -1,0 +1,118 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.8em;
+            text-align: left;
+        }
+
+        .button-container {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-button {
+            padding: 12px 25px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .header-button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .product-detail {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+        }
+
+        .product-detail img {
+            width: 300px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .details {
+            flex: 1;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.5;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .price {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="button-container">
+            <a href="{% url 'users:profile' %}" class="header-button">Личный кабинет</a>
+
+        </div>
+        <h1>{{ product.name }}</h1>
+    </header>
+
+    <div class="product-detail">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <div class="details">
+            <p>Описание: {{ product.description }}</p>
+            <p class="price">Цена: {{ product.price }} в сутки</p>
+            <a href="#" class="button">Запросить аренду</a>
+        </div>
+    </div>
+</body>
+</html>

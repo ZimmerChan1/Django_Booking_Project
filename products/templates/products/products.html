@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квартиры для аренды</title>
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+    <style>
+        .apartment-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start; /* Начинаем ряд слева */
+            margin: 20px;
+        }
+
+        .apartment {
+              background-color: rgba(255, 255, 255, 0.9);
+              border-radius: 15px;
+              padding: 10px; /* Уменьшено с 20px до 10px */
+              margin: 10px;
+              width: calc(30% - 20px);
+              box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .apartment h2 {
+              font-size: 1.5em; /* Уменьшите размер заголовка */
+        }
+
+        .apartment p {
+               font-size: 0.9em; /* Уменьшите размер текста */
+        }
+
+        .apartment:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        img {
+            width: 100%; /* Адаптивное изображение */
+            border-radius: 10px;
+        }
+
+        .register-button, .profile-button {
+            position: absolute;
+            top: 20px;
+            padding: 15px 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50px;
+            font-size: 1.2em;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .register-button:hover, .profile-button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 style="margin-top: 80px;">Квартиры для аренды</h1>
+    <a href="{% url 'users:register' %}" class="register-button" style="right: 20px;">Регистрация</a>
+    <a href="{% url 'users:login' %}" class="register-button" style="right: 240px;">Войти</a>
+    <a href="{% url 'users:profile' %}" class="profile-button" style="right: 410px;">Личный кабинет</a>
+</header>
+
+<div class="apartment-list">
+    {% for product in products %}
+    <div class="apartment">
+        <h2>{{ product.name }}</h2>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <p>Описание: {{ product.short_description }}</p>
+        <p>Цена: {{ product.price }} в сутки</p>
+        <a href="{% url 'products:product_detail' product.pk %}" class="button">Запросить аренду</a>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

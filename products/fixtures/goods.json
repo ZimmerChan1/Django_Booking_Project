@@ -1,0 +1,35 @@
+[
+  {
+    "model": "products.product",
+    "pk": "┼┘х юфэр ътрЁЄшЁр!",
+    "fields": {
+      "image": "products_images/zaxpqr3erfsy4rzu4gkr5mmoi3lvj4f5.jpg",
+      "description": "╩ЁєЄр  Єхьэр  ътрЁЄшЁр фы  шэЄЁютхЁЄют т ЎхэЄЁх юЄ ьхЄЁю 1 ьхЄЁ",
+      "short_description": "яЁюёЄю трє",
+      "price": "9000.00",
+      "category": "╩трЁЄшЁ√"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "╩трЁЄшЁр",
+    "fields": {
+      "image": "products_images/sovremennaya-kvartira-modnie-resheniya-i-stilnie-idei-02.JPG",
+      "description": "╩ЁєЄр  ёєяхЁ яєяхЁ сюы№°р  фюЁюур  ътрЁЄшЁр чр ъюяхщъш т ЎхэЄЁх wow lol XD _)))",
+      "short_description": "яЁюёЄю ъЁєЄю",
+      "price": "12000.00",
+      "category": "╩трЁЄшЁ√"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "╩трЁЄшЁр ╩трЁЄшЁр",
+    "fields": {
+      "image": "products_images/6.jpg",
+      "description": "тр∙х ёєяхЁ ъЁєЄр  фштрэ Єрь схы√щ ьюфэ√щ фюЁюующ чр фх°хтю",
+      "short_description": "їюЁю°р  ътрЁЄшЁр",
+      "price": "10000.00",
+      "category": "╩трЁЄшЁ√"
+    }
+  }
+]
