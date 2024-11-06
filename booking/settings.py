@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
     'products',
     'users',
+    'telegram_bot',
+
 ]
 
 MIDDLEWARE = [

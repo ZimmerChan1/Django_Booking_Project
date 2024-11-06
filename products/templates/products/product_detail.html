@@ -6,102 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ product.name }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #007bff;
-            color: white;
-            padding: 20px;
-            position: relative;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 1.8em;
-            text-align: left;
-        }
-
-        .button-container {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .header-button {
-            padding: 12px 25px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border-radius: 25px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .header-button:hover {
-            background-color: rgba(255, 255, 255, 0.4);
-        }
-
-        .product-detail {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            display: flex;
-        }
-
-        .product-detail img {
-            width: 300px;
-            border-radius: 10px;
-            margin-right: 20px;
-        }
-
-        .details {
-            flex: 1;
-        }
-
-        p {
-            font-size: 1.1em;
-            line-height: 1.5;
-            margin: 10px 0;
-            text-align: left;
-        }
-
-        .price {
-            font-size: 1.5em;
-            color: #28a745;
-            font-weight: bold;
-        }
-
-        .button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #218838;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/products_detail.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
         <div class="button-container">
             <a href="{% url 'users:profile' %}" class="header-button">Личный кабинет</a>
-
         </div>
         <h1>{{ product.name }}</h1>
     </header>
@@ -111,8 +22,85 @@
         <div class="details">
             <p>Описание: {{ product.description }}</p>
             <p class="price">Цена: {{ product.price }} в сутки</p>
-            <a href="#" class="button">Запросить аренду</a>
+
+            <!-- Город -->
+            <p><i class="fas fa-city"></i> Город: {{ product.city }}</p>
+
+            <!-- Срок аренды -->
+            <p><i class="fas fa-calendar-alt"></i> Срок аренды:
+                {% if product.lease_duration == 'short' %}
+                    Краткосрочная аренда
+                {% elif product.lease_duration == 'long' %}
+                    Долгосрочная аренда
+                {% else %}
+                    Не указано
+                {% endif %}
+            </p>
+
+            <!-- Можно с животными -->
+            <p><i class="fas fa-paw"></i> Можно с животными:
+                {% if product.pets_allowed %}
+                    Да
+                {% else %}
+                    Нет
+                {% endif %}
+            </p>
+
+            <a href="#" class="button">Написать арендодателю</a>
         </div>
     </div>
+
+     <div class="product-reviews">
+        <h3>Отзывы и оценки</h3>
+
+        {% if user.is_authenticated %}
+            <!-- Форма для добавления отзыва -->
+            <form method="POST" class="review-form">
+                {% csrf_token %}
+                <h4>Оцените квартиру</h4>
+                <label>Оценка:
+                    <select name="rating">
+                        <option value="1">1 звезда</option>
+                        <option value="2">2 звезды</option>
+                        <option value="3">3 звезды</option>
+                    </select>
+                </label>
+
+                <label><input type="checkbox" name="repair"> Ремонт</label>
+                <label><input type="checkbox" name="neighbors"> Соседи</label>
+                <label><input type="checkbox" name="area"> Район</label>
+                <label><input type="checkbox" name="furniture_condition"> Мебель и техника</label>
+
+                <textarea name="comment" placeholder="Ваш комментарий"></textarea>
+                <button type="submit">Оценить</button>
+            </form>
+        {% else %}
+            <p>Войдите, чтобы оставить отзыв.</p>
+        {% endif %}
+
+        <h4>Отзывы:</h4>
+        {% for review in product.reviews.all %}
+            <div class="review">
+                <p><strong>{{ review.user.username }}</strong> оценивает:
+                    <span class="stars">
+                        {% for i in "123"|slice:":review.rating" %}
+                            <i class="fas fa-star"></i>
+                        {% endfor %}
+                    </span>
+                </p>
+
+                <p><strong>Что вам больше понравилось:</strong></p>
+
+                <p><i class="fas fa-hammer"></i> Ремонт: {% if review.repair %} Да {% else %} Нет {% endif %}</p>
+                <p><i class="fas fa-users"></i> Соседи: {% if review.neighbors %} Да {% else %} Нет {% endif %}</p>
+                <p><i class="fas fa-map-marker-alt"></i> Район: {% if review.area %} Да {% else %} Нет {% endif %}</p>
+                <p><i class="fas fa-couch"></i> Мебель и техника: {% if review.furniture_condition %} Да {% else %} Нет {% endif %}</p>
+                <p><strong>Комментарий:</strong> {{ review.comment }}</p>
+            </div>
+        {% empty %}
+            <p>Отзывов пока нет.</p>
+        {% endfor %}
+    </div>
+
 </body>
 </html>

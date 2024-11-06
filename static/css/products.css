@@ -1,9 +1,8 @@
-body {
+ body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-image: url('https://www.hermes-investment.com/uploads/2021/10/3e3765df543c9c45c28b70ecd837bead/frankfurt-am-main-1920x1080-1.jpg');
-            background-color: #4a90e2; /* Замена фона на цвет */
-            color: white;
+            background-color: #fff8e7; /* Основной фон страницы */
+            color: #333; /* Темный цвет текста */
             display: flex;
             flex-direction: column;
             align-items: center; /* Центрируем содержимое по горизонтали */
@@ -12,81 +11,178 @@ body {
             padding: 20px;
         }
 
+        header {
+            width: 100%; /* Ширина заголовка */
+            background-color: #ff4500; /* Оранжевая полоса */
+            padding: 30px 0; /* Отступы для верхней полосы */
+            position: relative; /* Для позиционирования кнопок относительно заголовка */
+            display: flex; /* Flexbox для кнопок и заголовка */
+            justify-content: flex-start; /* Выровнять элементы по левому краю */
+            align-items: center; /* Вертикальное выравнивание элементов */
+            padding-left: 40px; /* Отступ слева для заголовка и кнопок */
+        }
+
         h1 {
-            font-size: 2.5em;
-            margin: 20px 0; /* Убираем поднятие заголовка */
-            padding: 20px 40px; /* Отступы внутри заголовка */
-            background-color: rgba(255, 255, 255, 0.2); /* Полупрозрачный фон */
-            border-radius: 50px; /* Закругленные углы для овала */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Тень для эффекта глубины */
-            text-align: center; /* Центрируем текст */
+            font-size: 2.5em; /* Размер заголовка */
+            color: white; /* Цвет текста заголовка */
+            margin: 0; /* Убираем отступы */
+            margin-right: auto; /* Чтобы заголовок занимал доступное место слева */
+        }
+
+        .register-button, .profile-button, .login-button {
+            position: relative; /* Убираем absolute, чтобы кнопки не перекрывались */
+            margin: 10px; /* Отступ между кнопками */
+            width: 180px; /* Фиксированная ширина для кнопок (можно немного увеличить) */
+            height: 50px; /* Фиксированная высота для кнопок */
+            background-color: rgba(255, 165, 0, 0.8); /* Оранжевый цвет с прозрачностью */
+            color: white;
+            border: 2px solid white;
+            border-radius: 50px; /* Закругленные углы */
+            font-size: 1em; /* Размер шрифта */
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: flex; /* Flexbox для центрирования текста и иконки */
+            align-items: center; /* Вертикальное центрирование текста и иконки */
+            justify-content: center; /* Горизонтальное центрирование текста и иконки */
+        }
+
+        .register-button:hover, .profile-button:hover, .login-button:hover {
+            background-color: rgba(255, 165, 0, 1); /* Более насыщенный оранжевый при наведении */
+            transform: scale(1.05); /* Легкое увеличение кнопки при наведении */
+        }
+
+        .bot-button {
+            position: relative; /* Убираем absolute, чтобы кнопки не перекрывались */
+            margin: 10px; /* Отступ между кнопками */
+            width: 180px; /* Фиксированная ширина для кнопок */
+            height: 50px; /* Фиксированная высота для кнопок */
+            background-color: rgba(255, 165, 0, 0.8); /* Оранжевый цвет с прозрачностью */
+            color: white;
+            border: 2px solid white;
+            border-radius: 50px; /* Закругленные углы */
+            font-size: 1em; /* Размер шрифта */
+            text-decoration: none; /* Убираем подчеркивание текста */
+            cursor: pointer; /* Курсор указатель при наведении */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Плавный переход цвета фона */
+            display: flex; /* Flexbox для центрирования текста и иконки */
+            align-items: center; /* Вертикальное центрирование текста и иконки */
+            justify-content: center; /* Горизонтальное центрирование текста и иконки */
+        }
+
+        .bot-button:hover {
+            background-color: rgba(255, 165, 0, 1); /* Более насыщенный оранжевый при наведении */
+            transform: scale(1.05); /* Легкое увеличение кнопки при наведении */
+        }
+
+        .bot-button i {
+            margin-right: 8px; /* Отступ между иконкой и текстом */
+            font-size: 1.2em; /* Размер иконки */
         }
 
         .apartment-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; /* Центрируем квартиры */
-            padding: 20px;
-            width: 100%; /* Ширина контейнера */
+            justify-content: flex-start; /* Начинаем ряд слева */
+            margin: 20px;
         }
 
         .apartment {
-            background: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон для карточки */
-            color: #333; /* Цвет текста */
-            border-radius: 10px; /* Закругленные углы */
+            background-color: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон для карточки */
+            border-radius: 15px; /* Закругленные углы */
+            padding: 30px; /* Отступы внутри карточки */
             margin: 15px;
-            padding: 20px;
-            max-width: 300px; /* Максимальная ширина карточки */
-            text-align: center; /* Центрируем текст внутри карточки */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для карточки */
+            width: 300px; /* Фиксированная ширина */
+            height: 350px; /* Фиксированная высота */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Начинаем с верхней части */
+            overflow: hidden; /* Чтобы содержимое не выходило за рамки */
+        }
+
+        .apartment img {
+            width: 100%; /* Адаптивная ширина */
+            height: 150px; /* Ограничение высоты для изображения */
+            object-fit: cover; /* Картинка будет обрезаться, чтобы заполнить область */
+            border-radius: 10px; /* Закругленные углы изображения */
+            margin-bottom: 10px;
+        }
+
+        .apartment h2 {
+           font-size: 1.2em;
+           color: #ff4500;
+           margin: 0;
+           margin-bottom: 8px;
+        }
+
+        .apartment p {
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin: 2px 0; /* Отступы сверху и снизу */
+            overflow: auto; /* Добавляем прокрутку, если текст не помещается */
+            max-height: 60px; /* Ограничиваем высоту блока текста */
+        }
+
+        .apartment .button {
+            margin-top: auto; /* Кнопка будет расположена внизу карточки */
+            padding: 10px 15px;
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .apartment:hover {
+            transform: scale(1.05); /* Увеличение карточки при наведении */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Более глубокая тень при наведении */
         }
 
         img {
-            max-width: 100%; /* Ограничиваем ширину изображения */
+            width: 100%; /* Адаптивное изображение */
             border-radius: 10px; /* Закругленные углы для изображения */
         }
 
-        .button {
-            background-color: #ff4500; /* Цвет кнопки */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 50px; /* Закругленные углы для кнопки */
-            cursor: pointer;
-            margin-top: 10px;
-            text-align: center;
-            text-decoration: none;
-            transition: transform 0.2s;
-        }
 
-        .button:hover {
-            transform: scale(1.05); /* Легкое увеличение кнопки при наведении */
-
-        header {
-            position: relative; /* Для позиционирования кнопки относительно заголовка */
-        }
-
-.register-button {
-    position: absolute;
-    top: 20px; /* Отступ от верхней части */
-    right: 20px; /* Отступ от правой границы */
-    padding: 15px 40px; /* Увеличенные отступы внутри кнопки */
-    background-color: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый фон */
-    color: white; /* Белый цвет текста */
-    border: 2px solid white; /* Белая рамка для кнопки */
-    border-radius: 50px; /* Овальная форма кнопки */
-    font-size: 1.2em; /* Чуть больший шрифт */
-    text-decoration: none;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Тень как у заголовка */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Плавная анимация */
+footer {
+    text-align: center; /* Центрирование текста */
+    padding: 10px 0; /* Уменьшаем отступы сверху и снизу */
 }
 
-.register-button:hover {
-    background-color: rgba(255, 255, 255, 0.4); /* Более насыщенный белый фон при наведении */
-    transform: scale(1.1); /* Увеличение кнопки при наведении */
+.footer-border {
+    border-top: 5px solid #ff4500; /* Оранжевая рамка */
+    margin-top: 20px; /* Отступ сверху для рамки */
 }
 
+.footer-content {
+    background-color: #fff8e7; /* Фон футера */
+    padding: 10px 0; /* Отступы для содержимого футера */
+}
 
+.footer-content p {
+    margin: 5px 0; /* Убираем отступы между строками */
+}
 
+.footer-content a {
+    color: #ff4500; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+    margin: 0 10px; /* Отступы между ссылками */
+}
+
+.footer-content .social-links a {
+    margin: 0 10px; /* Отступы между иконками социальных сетей */
+    color: #ff4500; /* Цвет иконок */
+    font-size: 1.2em; /* Размер иконок */
+}
+
+.footer-content .social-links a:hover {
+    color: #cc0000; /* Цвет иконок при наведении */
+}

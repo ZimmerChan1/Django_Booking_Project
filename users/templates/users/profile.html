@@ -1,9 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Профиль пользователя</title>
+
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,35 +17,63 @@
             height: 100vh;
             margin: 0;
         }
+
         .profile-form {
             background-color: #ffffff;
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             width: 400px;
+            text-align: center; /* Центрируем текст */
         }
+
         .profile-form h2 {
             font-size: 24px;
             margin-bottom: 20px;
             color: #333;
         }
-        .form-group {
+
+        .avatar-container {
+            position: relative;
             margin-bottom: 20px;
         }
+
+        .avatar {
+            width: 100px; /* Ширина аватара */
+            height: 100px; /* Высота аватара */
+            border-radius: 50%; /* Круглая форма */
+            object-fit: cover; /* Обрезка по пропорциям */
+            margin-bottom: 10px; /* Отступ от аватара */
+            border: 2px solid #007bff; /* Граница аватара */
+        }
+
+        .form-group {
+              margin-bottom: 20px;
+        }
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
             font-size: 14px;
             color: #666;
         }
-        .form-group input, .form-group select {
+
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: 8px;
             box-sizing: border-box;
             font-size: 16px;
+            transition: border-color 0.3s;
         }
+
+        .form-group input:focus {
+            border-color: #007bff; /* Изменение цвета границы при фокусе */
+            outline: none; /* Убираем обводку */
+        }
+
         .form-group button {
             width: 100%;
             padding: 12px;
@@ -54,50 +85,49 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
         }
+
         .form-group button:hover {
             background-color: #0056b3;
             transform: translateY(-2px);
         }
+
+        .upload-button {
+            margin-top: 10px; /* Отступ для кнопки загрузки */
+            background-color: #28a745; /* Зеленый цвет для кнопки загрузки */
+        }
+
+        .upload-button:hover {
+             background-color: #218838; /* Более темный зеленый при наведении */
+        }
     </style>
+
 </head>
-<body>
 
-<div class="profile-form">
-    <h2>Редактировать профиль</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+    <body>
+    <div class="profile-form">
+        <h2>Профиль пользователя</h2>
 
-        <!-- Рендерим поля формы -->
-        <div class="form-group">
-            <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
-            {{ form.username }}
+        <div class="avatar-container">
+            <img src="{{ user.profile.avatar.url }}" alt="Avatar" class="avatar">
+            <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+            <label for="avatar-upload" class="upload-button">Загрузить аватар</label>
         </div>
 
-        <div class="form-group">
-            <label for="{{ form.email.id_for_label }}">Электронная почта</label>
-            {{ form.email }}
-        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Имя пользователя</label>
+                <input type="text" id="username" name="username" value="{{ user.username }}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Электронная почта</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Сохранить изменения</button>
+            </div>
+        </form>
+    </div>
+    </body>
 
-        <div class="form-group">
-            <label for="{{ form.first_name.id_for_label }}">Имя</label>
-            {{ form.first_name }}
-        </div>
-
-        <div class="form-group">
-            <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
-            {{ form.last_name }}
-        </div>
-
-        <div class="form-group">
-            <label for="{{ form.image.id_for_label }}">Аватар</label>
-            {{ form.profile_image}}  <!-- Поле для загрузки изображения -->
-        </div>
-
-        <div class="form-group">
-            <button type="submit">Сохранить изменения</button>
-        </div>
-    </form>
-</div>
-
-</body>
 </html>
