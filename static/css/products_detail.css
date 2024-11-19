@@ -56,7 +56,7 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     margin-left: 20px;
-    flex: 1; /* Чтобы карточка товара занимала доступное пространство */
+    display: inline-block;
 }
 
 .product-detail img {
@@ -69,7 +69,6 @@ h1 {
 }
 
 .details {
-    flex: 1;
     text-align: left;
     padding: 0 20px;
 }
@@ -105,9 +104,12 @@ p {
 
 /* Стили для блока отзывов */
 .product-reviews {
-    width: 300px; /* Фиксированная ширина блока с отзывами */
+    display: inline-block;
+    position: fixed;
+    top: 87px;
+    width: 450px; /* Фиксированная ширина блока с отзывами */
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 15px;
     border-radius: 10px;
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
